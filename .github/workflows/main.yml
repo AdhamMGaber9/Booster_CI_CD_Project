@@ -15,7 +15,7 @@ jobs:
 
 
       - name: run build and push the image
-        run:
+        run: |
           docker login -u ${{secrets.MY_USER}} -p ${{secrets.MY_PASS}}
           docker build . -t ${{secrets.MY_USER}}/django:v1.0
           docker push ${{secrets.MY_USER}}/django:v1.0
