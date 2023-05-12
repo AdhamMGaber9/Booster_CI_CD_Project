@@ -1,0 +1,21 @@
+name: push Docker image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+
+
+      - name: run build and push the image
+        run:
+          docker login -u ${{secrets.MY_USER}} -p ${{secrets.MY_PASS}}
+          docker build . -t ${{secrets.MY_USER}}/django:v1.0
+          docker push ${{secrets.MY_USER}}/django:v1.0
